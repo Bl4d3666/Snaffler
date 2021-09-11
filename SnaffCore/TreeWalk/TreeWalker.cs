@@ -77,6 +77,13 @@ namespace SnaffCore.TreeWalk
 
                     foreach (string dirStr in subDirs)
                     {
+                        if (!String.IsNullOrWhiteSpace(MyOptions.ExcludeString))
+                        {
+                            if (dirStr.Contains(MyOptions.ExcludeString))
+                            {
+                                continue;
+                            }
+                        }
                         foreach (ClassifierRule classifier in MyOptions.DirClassifiers)
                         {
                             try
@@ -108,6 +115,7 @@ namespace SnaffCore.TreeWalk
                         }
                     }
                 }
+
             }
             catch (UnauthorizedAccessException)
             {

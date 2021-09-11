@@ -13,6 +13,8 @@ namespace SnaffCore.Config
         public bool ScanNetlogon { get; set; } = true;
         public int InterestLevel { get; set; } = 0;
 
+        public string ExcludeString { get; set; }
+
         // Concurrency Options
         public int MaxThreads { get; set; } = 60;
         public int ShareThreads { get; set; }

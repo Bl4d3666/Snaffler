@@ -1,5 +1,4 @@
-﻿using SnaffCore.Classifiers;
-using SnaffCore.Concurrency;
+﻿using SnaffCore.Concurrency;
 using System;
 using System.Collections.Generic;
 using System.IO;

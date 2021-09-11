@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace SnaffCore.Classifiers
+namespace Classifiers
 {
 
     // c/o Mario Majčica @ https://www.codeproject.com/Articles/162194/Certificates-to-DB-and-Back

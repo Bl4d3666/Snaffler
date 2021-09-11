@@ -69,7 +69,7 @@ namespace Snaffler
             SwitchArgument domainUserArg = new SwitchArgument('u', "domainusers", "Makes Snaffler grab a list of interesting-looking accounts from the domain and uses them in searches.", false);
             ValueArgument<int> maxThreadsArg = new ValueArgument<int>('a', "maxthreads", "How many threads to be snaffling with. Any less than 4 and you're gonna have a bad time.");
             SwitchArgument tsvArg = new SwitchArgument('y', "tsv", "Makes Snaffler output as tsv.", false);
-
+            ValueArgument<string> excludeArg = new ValueArgument<string>('x', "exclude", "A single string - any directories with names containing this string will be skipped.");
             // list of letters i haven't used yet: efgknpqwx
 
             CommandLineParser.CommandLineParser parser = new CommandLineParser.CommandLineParser();
@@ -89,6 +89,7 @@ namespace Snaffler
             parser.Arguments.Add(domainUserArg);
             parser.Arguments.Add(tsvArg);
             parser.Arguments.Add(maxThreadsArg);
+            parser.Arguments.Add(excludeArg);
 
             // extra check to handle builtin behaviour from cmd line arg parser
             if ((args.Contains("--help") || args.Contains("/?") || args.Contains("help") || args.Contains("-h") || args.Length == 0))
@@ -187,6 +188,12 @@ namespace Snaffler
                     parsedConfig.PathTargets = new string[] { dirTargetArg.Value };
                     Mq.Degub("Disabled finding shares.");
                     Mq.Degub("Target path is " + dirTargetArg.Value);
+                }
+
+                if (excludeArg.Parsed)
+                {
+                    parsedConfig.ExcludeString = excludeArg.Value;
+                    Mq.Degub("Excluding all dirs that contain " + parsedConfig.ExcludeString);
                 }
 
                 if (maxGrepSizeArg.Parsed)
