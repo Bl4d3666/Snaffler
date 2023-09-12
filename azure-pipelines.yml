@@ -16,8 +16,6 @@ variables:
 steps:
 
 - task: NuGetToolInstaller@1
-  inputs:
-    versionSpec: 6.7.0
 
 - task: NuGetCommand@2
   inputs:
@@ -28,7 +26,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)" /p:TargetFramework=v4.5'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
