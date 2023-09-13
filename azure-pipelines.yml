@@ -15,9 +15,6 @@ variables:
 
 steps:
 
-- task: NuGetToolInstaller@1
-  inputs:
-    versionSpec: 4.5.1
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
