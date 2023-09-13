@@ -15,12 +15,12 @@ variables:
 
 steps:
 
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '4.5.1'
+- task: NuGetToolInstaller@1
+  inputs: 
+    versionSpec: '4.5.1'
+
 - task: NuGetCommand@2
-  inputs:
+  inputs: 
     command: 'restore'
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
