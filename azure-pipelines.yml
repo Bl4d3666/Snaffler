@@ -22,16 +22,22 @@ steps:
 - task: NuGetCommand@2
   inputs: 
     command: 'restore'
-    restoreSolution: '**/*.sln'
+    restoreSolution: '**/Snaffler.sln'
     feedsToUse: 'select'
-
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/Snaffler.sln'
 - task: VSBuild@1
   inputs:
-    solution: '$(solution)'
+    solution: '**\Snaffler.sln'
+    #solution: '$(solution)'
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    
+    vsVersion: '16.0'
+    restoreNugetPackages: true
+
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
