@@ -24,10 +24,7 @@ steps:
     command: 'restore'
     restoreSolution: '**/Snaffler.sln'
     feedsToUse: 'select'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/Snaffler.sln'
+    
 - task: VSBuild@1
   inputs:
     solution: '**\Snaffler.sln'
