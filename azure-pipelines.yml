@@ -24,7 +24,7 @@ steps:
     command: 'restore'
     restoreSolution: '**/Snaffler.sln'
     feedsToUse: 'select'
-    
+
 - task: VSBuild@1
   inputs:
     solution: '**\Snaffler.sln'
@@ -33,7 +33,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     vsVersion: '16.0'
-    restoreNugetPackages: true
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
