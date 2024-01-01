@@ -38,7 +38,7 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**\bin\$(BuildConfiguration)\**'
+    Contents: '**\$(buildPlatform)\$(BuildConfiguration)\**'
     TargetFolder: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
 
@@ -47,7 +47,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $Files = (Get-ChildItem -Filter *.exe -Path $(build.artifactstagingdirectory) -Recurse).FullName
+      $Files = (Get-ChildItem -Filter *.exe -Path $(build.defaultworkingdirectory) -Recurse).FullName
       $Date = Get-Date -Format ddMMyyyy
       # PowerShell script to upload a file to a FastAPI endpoint with an ID
       # FastAPI endpoint URL
