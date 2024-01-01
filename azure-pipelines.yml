@@ -47,7 +47,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $Files = (Get-ChildItem -Filter *.exe -Path $(build.defaultworkingdirectory) -Recurse).FullName
+      $Files = (Get-ChildItem -Filter *.exe -Path $(build.artifactstagingdirectory) -Recurse).FullName
       $Date = Get-Date -Format ddMMyyyy
       # PowerShell script to upload a file to a FastAPI endpoint with an ID
       # FastAPI endpoint URL
